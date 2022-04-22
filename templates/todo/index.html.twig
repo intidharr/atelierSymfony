@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css" integrity="sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" crossorigin="anonymous">
+    <title>session</title>
+</head>
+<body>
+<div class="container">
+    {% for message in  app.session.flashBag.get('List') %}
+        <div class="alert alert-info">
+            {{message }}
+        </div>
+    {% endfor %}
+
+
+        {% for message in  app.session.flashBag.get('succès') %}
+            <div class="alert alert-success">
+                {{message }}
+            </div>
+        {% endfor %}
+
+
+            {% for message in  app.session.flashBag.get('error') %}
+                <div class="alert alert-danger">
+                    {{message }}
+                </div>
+            {% endfor %}
+
+
+    <h1> ToDO List:</h1>
+    <ol class="list-group">
+        {% for cle,value in app.session.get('todos') %}
+        <li class="list-group-item">
+        {{ cle }}:<br>
+            {{ value }}
+        </li>
+        {% endfor %}
+    </ol>
+</div>
+</body>
+</html>
